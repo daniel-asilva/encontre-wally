@@ -1,0 +1,147 @@
+html, body{
+	cursor: url(../imgs/lupe.svg) 35 40, auto;
+	font-family: "Calibri";
+	overflow: hidden;
+	margin: 0 auto;
+}
+
+body.loaded{
+	overflow-y: auto;
+	height: 100vh;
+}
+
+.animate-bottom{
+	position: relative;
+	animation-name: animatebottom;
+	animation-duration: 1s;
+}
+
+@keyframes animatebottom {
+	from {bottom: -100px; opacity: 0}
+	to {bottom: 0; opacity: 1}
+}
+
+.preload{
+	width: 100%;
+	height: 100%;
+	background: #f2f2f2;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 1;
+}
+
+#loadingimage{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 200px;
+	height: 227.67px;
+	background-image: url(../imgs/waldo.svg);
+	background-repeat: no-repeat;
+	background-size: 100%;
+	/*filter: drop-shadow(3px 3px 2px rgba(0, 0, 0, .2));*/
+}
+
+#loadingimage .overlay{
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 2;
+	background-color: #f2f2f2;
+	animation: reveal 3.1s ease-in;
+}
+
+@keyframes reveal {
+	0% {
+		transform: scaleY(1);
+		transform-origin: 0% 0%;
+	}
+	90% {
+		transform: scaleY(0);
+		transform-origin: 0% 0%;
+	}
+	100% {
+		transform: scaleY(1);
+		transform-origin: 0% 0%;
+	}
+}
+
+@keyframes fadeout {
+	from {opacity: 1;}
+	to {opacity: 0;}
+}
+
+#center{
+	width: 60%;
+	margin: 0 auto;
+	padding-top: 10px;
+}
+
+div.wally{
+	border-radius: 6px;
+	width: 40px;
+	height: 40px;
+	margin: 5px;
+	background-color: lightblue;
+	display: table;
+	float: left;
+}
+.wally p{
+	font-size: 18px;
+	font-weight: bold;
+	display: table-cell;
+	text-align: center;
+	vertical-align: middle;
+}
+.wally:hover{background-color: lightgreen;}
+.wally:active{background-color: lightsalmon;}
+
+.fimjogo {
+	width: 100%;
+	height: 100%;
+	background: #f2f2f2;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 1;
+	text-align: center;
+}
+
+.fimjogo .content{
+	width: 60%;
+	margin: 0 auto;
+}
+
+.fimjogo p{
+	background: white;
+	border-radius: 10px;
+	padding: 5px;
+	margin-bottom: 10px;
+	width: 40%;
+	font-size: 18px;
+	font-weight: bold;
+	display: inline-block;
+}
+
+.containerbotoes{
+	width: 60%;
+	margin: 0 auto;
+}
+
+.botao {
+	display: inline-block;
+	margin: 0px 10px 0px 0px;
+	width: 95px;
+	font-size: 1em;
+	padding: 10px;
+	background-color: royalblue;
+	color: white;
+	border-radius: 6px;
+	transition: all 0.3s ease-out;
+}
+
+#fim:hover{background-color: crimson;}
+#recomecar:hover{background-color: forestgreen;}
