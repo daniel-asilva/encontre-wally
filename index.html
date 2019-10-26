@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+
+		<title>Encontre o Wally!</title>
+
+		<link rel="stylesheet" href="./css/styles.css">
+
+		<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+	</head>
+
+	<body>
+		<div class="preload" id="preload">
+			<div id="loadingimage">
+				<div class="overlay"></div>
+			</div>
+		</div>
+
+		<div id="center"></div>
+
+		<script>
+			// função exacutada assim que a página é carregada
+			$(document).ready(function(){
+				setTimeout(function(){
+					// após 3 segundos adiciona a animacao de fadeout na div de carregamento
+					$('.preload').css('animation', 'fadeout 1s ease');
+					// adiciona a classe da animação de chegada do body
+					$('body').addClass('animate-bottom');
+					// restaura a rolagem do body
+					$('body').addClass('loaded');
+
+					setTimeout(function(){
+						// após 1 segundo esconde a div de carregamento e remove a animação
+						$('.preload').css('visibility', 'hidden')
+						$('.preload').css('animation', '');
+						// remove a classe de animação de chegada do body
+						$('body').removeClass('animate-bottom');
+					}, 1000)
+				}, 3000)
+			});
+		</script>
+
+		<script type="text/javascript">
+			var tentativa = 1;
+			var casas = 500;
+
+			resposta = Math.floor(Math.random() * casas);
+
+			for (i = 0; i < casas; i++){
+				var div = document.createElement('div');
+				div.innerHTML = "<p>" + (i + 1) + "</p>";
+				div.setAttribute('class', 'wally');
+				div.setAttribute('onclick', 'wally(this)');
+				document.getElementById("center").appendChild(div);
+			}
+
+			function wally(ctrl){
+				if (tentativa <= 10) {
+					var escolhido = ctrl.getElementsByTagName('p')[0].innerHTML;
+					
+					if (escolhido == resposta){
+						fimdojogo("Parabéns você encontrou o Wally!!!\n\nVocê conseguiu com " + tentativa + " tentativa(s).");
+					} else {
+						if (escolhido < resposta) {
+							alert("Tente um número maior");
+						} else {
+							alert("Tente um número menor");
+						}
+					}
+
+					tentativa++;
+				} else {
+					fimdojogo("Você é realmente ruim nisso, hein?\nSeu número de tentativas esgotou!\nTente novamente.");
+				}
+
+				function fimdojogo(mensagem){
+
+					$('#center').after('\
+						<div class="fimjogo">\
+							<div class="content">\
+								<p>' + mensagem + '</p>\
+								<div class="containerbotoes">\
+									<div id="fim" class="botao">Fim</div>\
+									<div id="recomecar" class="botao">Recomeçar</div>\
+								</div>\
+							</div>\
+						</div>'
+					);
+
+					$('#fim').bind("click", function() {
+						location.reload();
+					});
+
+					$('#recomecar').bind("click", function() {
+						location.reload();
+					});
+				}
+			}
+
+			$(window).on('beforeunload', function(){
+				$(window).scrollTop(0);
+			})
+		</script>
+	</body>
+</html>
