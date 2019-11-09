@@ -5,12 +5,25 @@
 
 		<title>Encontre o Wally!</title>
 
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+
 		<link rel="stylesheet" href="./css/styles.css">
 
 		<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+
+		<!-- importação dos favicons multiplataforma -->
+		<link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
+		<link rel="manifest" href="./site.webmanifest">
+		<link rel="mask-icon" href="./safari-pinned-tab.svg" color="#5bbad5">
+		<meta name="msapplication-TileColor" content="#da532c">
+		<meta name="theme-color" content="#ffffff">
 	</head>
 
 	<body>
+		<div id="versao">0.2-alpha</div>
+
 		<div class="preload" id="preload">
 			<div id="loadingimage">
 				<div class="overlay"></div>
@@ -43,14 +56,14 @@
 
 		<script type="text/javascript">
 			var tentativa = 1;
-			var casas = 500;
+			var casas = 200;
 
 			resposta = Math.floor(Math.random() * casas);
 
 			for (i = 0; i < casas; i++){
 				var div = document.createElement('div');
 				div.innerHTML = "<p>" + (i + 1) + "</p>";
-				div.setAttribute('class', 'wally');
+				div.setAttribute('class', 'casas');
 				div.setAttribute('onclick', 'wally(this)');
 				document.getElementById("center").appendChild(div);
 			}
@@ -79,7 +92,8 @@
 					$('#center').after('\
 						<div class="fimjogo">\
 							<div class="content">\
-								<p>' + mensagem + '</p>\
+								<div class="wally"></div>\
+								<div class="texto"><p>' + mensagem + '</p></div>\
 								<div class="containerbotoes">\
 									<div id="fim" class="botao">Fim</div>\
 									<div id="recomecar" class="botao">Recomeçar</div>\
@@ -87,6 +101,12 @@
 							</div>\
 						</div>'
 					);
+
+					if (mensagem.includes("Parabéns")) {
+						$('.content > .wally').addClass("wally-feliz");
+					} else{
+						$('.content > .wally').addClass("wally-triste");
+					}
 
 					$('#fim').bind("click", function() {
 						location.reload();

@@ -1,6 +1,6 @@
 html, body{
-	cursor: url(../imgs/lupe.svg) 35 40, auto;
-	font-family: "Calibri";
+	cursor: url(../imgs/lupa.svg) 35 40, auto;
+	font-family: 'Roboto', 'Calibri', Helvetica, sans-serif;
 	overflow: hidden;
 	margin: 0 auto;
 }
@@ -38,7 +38,7 @@ body.loaded{
 	transform: translate(-50%, -50%);
 	width: 200px;
 	height: 227.67px;
-	background-image: url(../imgs/waldo.svg);
+	background-image: url(../imgs/waldo-head.svg);
 	background-repeat: no-repeat;
 	background-size: 100%;
 	/*filter: drop-shadow(3px 3px 2px rgba(0, 0, 0, .2));*/
@@ -74,13 +74,22 @@ body.loaded{
 	to {opacity: 0;}
 }
 
+#versao{
+	position: fixed;
+	margin: 50px 30px;
+	left: 0;
+	bottom: 0;
+	font-size: 10px;
+	z-index: 3;
+}
+
 #center{
 	width: 60%;
 	margin: 0 auto;
 	padding-top: 10px;
 }
 
-div.wally{
+#center div.casas{
 	border-radius: 6px;
 	width: 40px;
 	height: 40px;
@@ -89,15 +98,15 @@ div.wally{
 	display: table;
 	float: left;
 }
-.wally p{
+#center .casas p{
 	font-size: 18px;
 	font-weight: bold;
 	display: table-cell;
 	text-align: center;
 	vertical-align: middle;
 }
-.wally:hover{background-color: lightgreen;}
-.wally:active{background-color: lightsalmon;}
+#center .casas:hover{background-color: lightgreen;}
+#center .casas:active{background-color: lightsalmon;}
 
 .fimjogo {
 	width: 100%;
@@ -111,8 +120,33 @@ div.wally{
 }
 
 .fimjogo .content{
+	position: absolute;
 	width: 60%;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.fimjogo div.wally{
 	margin: 0 auto;
+	width: 200px;
+	height: 200px;
+	background-repeat: no-repeat;
+	background-size: 100%;
+}
+
+.wally.wally-feliz{
+	background-image: url("../imgs/wally-feliz.png");
+}
+.wally.wally-triste{
+	background-image: url("../imgs/wally-triste.png");
+}
+
+.fimjogo.texto{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 }
 
 .fimjogo p{
@@ -120,7 +154,7 @@ div.wally{
 	border-radius: 10px;
 	padding: 5px;
 	margin-bottom: 10px;
-	width: 40%;
+	width: 300px;
 	font-size: 18px;
 	font-weight: bold;
 	display: inline-block;
@@ -133,9 +167,10 @@ div.wally{
 
 .botao {
 	display: inline-block;
-	margin: 0px 10px 0px 0px;
+	margin: 10px;
 	width: 95px;
 	font-size: 1em;
+	font-weight: bold;
 	padding: 10px;
 	background-color: royalblue;
 	color: white;
@@ -144,4 +179,6 @@ div.wally{
 }
 
 #fim:hover{background-color: crimson;}
+#fim:active{background-color: royalblue; transition: none;}
 #recomecar:hover{background-color: forestgreen;}
+#recomecar:active{background-color: royalblue; transition: none;}
