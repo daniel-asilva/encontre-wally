@@ -1,8 +1,20 @@
+::selection{
+	color: white;
+	background: gray;
+}
+
+/* importa fonte Berlin Sans FB Bold */
+@font-face{
+	font-family: "Berlin Sans FB";
+	src: url(../BRLNSB.TTF);
+}
+
 html, body{
 	cursor: url(../imgs/lupa.svg) 35 40, auto;
-	font-family: 'Roboto', 'Calibri', Helvetica, sans-serif;
+	font-family: 'Ubuntu', 'Calibri', Helvetica, sans-serif;
 	overflow: hidden;
 	margin: 0 auto;
+	background-color: #f6f6f6;
 }
 
 body.loaded{
@@ -10,25 +22,110 @@ body.loaded{
 	height: 100vh;
 }
 
-.animate-bottom{
-	position: relative;
-	animation-name: animatebottom;
-	animation-duration: 1s;
-}
-
-@keyframes animatebottom {
-	from {bottom: -100px; opacity: 0}
-	to {bottom: 0; opacity: 1}
-}
-
-.preload{
+#startscreen {
 	width: 100%;
 	height: 100%;
-	background: #f2f2f2;
+	background: #f8f8f8;
 	position: fixed;
 	top: 0;
 	left: 0;
 	z-index: 1;
+	text-align: center;
+}
+
+#startscreen .bg-pattern{
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	background: url(../imgs/bg.png) repeat;
+	animation: sliding 5s linear infinite;
+	opacity: 0.05;
+}
+
+@keyframes sliding {
+	from {background-position: 0 0;}
+	to {background-position: 0 80px;}
+}
+
+#startscreen .content{
+	position: absolute;
+	width: 40%;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+#startscreen .titulo{
+	margin: 10px 0px;
+	font-family: "Berlin Sans FB";
+	font-size: 60px;
+	text-align: center;
+	padding: 10px 0px;
+	letter-spacing: 4px;
+	line-height: 60px;
+	position: relative;
+}
+
+#startscreen .azul{
+	color: #00529e;
+}
+
+#startscreen .vermelho{
+	color: #e5190e
+}
+
+#startscreen .wally{
+	position: relative;
+	margin: 0 auto;
+	width: 200px;
+	height: 205px;
+	background-repeat: no-repeat;
+	background-size: 100%;
+	background-image: url(../imgs/waldo-start.png);
+}
+
+#startscreen.texto{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+#startscreen .texto p{
+	background: white;
+	border-radius: 10px;
+	padding: 5px;
+	margin-bottom: 10px;
+	width: 300px;
+	font-size: 18px;
+	font-weight: bold;
+	display: inline-block;
+}
+
+/* propriedades do botaoIniciar da div #startscreen
+definidas pelo bloco de código .botao no final dessa folha */
+
+#botaoIniciar:hover{background-color: forestgreen;}
+#botaoIniciar:active{background-color: royalblue; transition: none;}
+
+@keyframes arrive{
+	0% {transform: translate(0%, 100%);}
+	20% {transform: translate(0%, 0%);}
+	90% {transform: translate(0%, 0%);}
+	100% {transform: translate(0%, 100%);}
+}
+
+#loadingscreen{
+	display: none;
+	width: 100%;
+	height: 100%;
+	background: #f8f8f8;
+	box-shadow: 0px 0px 40px 0px grey;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 2;
 }
 
 #loadingimage{
@@ -41,7 +138,6 @@ body.loaded{
 	background-image: url(../imgs/waldo-head.svg);
 	background-repeat: no-repeat;
 	background-size: 100%;
-	/*filter: drop-shadow(3px 3px 2px rgba(0, 0, 0, .2));*/
 }
 
 #loadingimage .overlay{
@@ -50,8 +146,8 @@ body.loaded{
 	width: 100%;
 	height: 100%;
 	z-index: 2;
-	background-color: #f2f2f2;
-	animation: reveal 3.1s ease-in;
+	background-color: #f8f8f8;
+	animation: reveal 3.1s ease-in .2s;
 }
 
 @keyframes reveal {
@@ -69,27 +165,138 @@ body.loaded{
 	}
 }
 
+@keyframes fadein {
+	from {opacity: 0;}
+	to {opacity: 1;}
+}
+
 @keyframes fadeout {
 	from {opacity: 1;}
 	to {opacity: 0;}
 }
 
-#versao{
-	position: fixed;
-	margin: 50px 30px;
-	left: 0;
-	bottom: 0;
-	font-size: 10px;
-	z-index: 3;
+/* INICIO POP-UP BOX */
+
+.popup.fade{
+    -webkit-animation: fadein .5s;
+    animation: fadein .5s;
 }
+
+.popup{
+    background: rgba(0,0,0,.4);
+    cursor: default;
+    display:none;
+    height:100%;
+    position:fixed;
+    text-align:center;
+    top:0;
+    width:100%;
+    z-index:3;
+    -webkit-animation: fadeout .5s;
+    animation: fadeout .5s;
+}
+.popup .helper{
+    display:inline-block;
+    height:100%;
+    vertical-align:middle;
+}
+.popup .hover_box {
+    background-color: #fbfbfb;
+    box-shadow: 10px 10px 60px #555;
+    display: inline-block;
+    height: auto;
+    max-width: 300px;
+    vertical-align: middle;
+    width: 20%;
+    position: relative;
+    border-radius: 8px;
+    padding: 15px 5%;
+    z-index:4;
+}
+
+.popup p {
+	padding: 20px;
+}
+
+.btnFecharPopup {
+    background-color: #fff;
+    border: 3px solid #999;
+    border-radius: 50px;
+    cursor: pointer;
+    display: inline-block;
+    font-weight: bold;
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    font-size: 30px;
+    line-height: 25px;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+}
+.btnFecharPopup:hover {
+    background-color: #ccc;
+}
+
+#versao{
+	display: none;
+	font-size: 11px;
+	bottom: 0px;
+}
+
+/* FIM POPUP BOX */
 
 #center{
 	width: 60%;
 	margin: 0 auto;
-	padding-top: 10px;
 }
 
-#center div.casas{
+#header {
+	float: left;
+	width: 100%;
+	margin: 15px 0px;
+}
+
+#header p{
+	margin: 0 auto;
+	font-family: "Berlin Sans FB";
+	font-size: 60px;
+	text-align: center;
+	padding: 20px 0px;
+	letter-spacing: 4px;
+	float: left;
+	position: relative;
+}
+
+#header .azul{
+	color: #00529e;
+}
+
+#header .vermelho{
+	color: #e5190e
+}
+
+#header .imagem{
+	float: left;
+	position: relative;
+	margin: 0 auto;
+	width: 110px;
+	height: 110px;
+	background-repeat: no-repeat;
+	background-size: 100%;
+	background-image: url(../imgs/wally-head-titulo.jpg);
+}
+
+#container-casas {
+	float: left;
+	margin: 0 auto;
+	padding: 20px;
+	background-color: #fbfbfb;
+	box-shadow: 1px 1px 10px #555;
+	border-radius: 15px;
+}
+
+#center div.casa{
 	border-radius: 6px;
 	width: 40px;
 	height: 40px;
@@ -98,20 +305,20 @@ body.loaded{
 	display: table;
 	float: left;
 }
-#center .casas p{
+#center .casa p{
 	font-size: 18px;
 	font-weight: bold;
 	display: table-cell;
 	text-align: center;
 	vertical-align: middle;
 }
-#center .casas:hover{background-color: lightgreen;}
-#center .casas:active{background-color: lightsalmon;}
+#center .casa:hover{background-color: lightgreen;}
+#center .casa:active{background-color: lightsalmon;}
 
-.fimjogo {
+#fimjogo {
 	width: 100%;
 	height: 100%;
-	background: #f2f2f2;
+	background: #f8f8f8;
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -119,7 +326,7 @@ body.loaded{
 	text-align: center;
 }
 
-.fimjogo .content{
+#fimjogo .content{
 	position: absolute;
 	width: 60%;
 	top: 50%;
@@ -127,7 +334,7 @@ body.loaded{
 	transform: translate(-50%, -50%);
 }
 
-.fimjogo div.wally{
+#fimjogo div.wally{
 	margin: 0 auto;
 	width: 200px;
 	height: 200px;
@@ -142,21 +349,20 @@ body.loaded{
 	background-image: url("../imgs/wally-triste.png");
 }
 
-.fimjogo.texto{
+#fimjogo.texto{
 	position: absolute;
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
 }
 
-.fimjogo p{
-	background: white;
+#fimjogo p{
+	background: #fbfbfb;
 	border-radius: 10px;
-	padding: 5px;
+	padding: 10px;
 	margin-bottom: 10px;
 	width: 300px;
 	font-size: 18px;
-	font-weight: bold;
 	display: inline-block;
 }
 
@@ -182,3 +388,78 @@ body.loaded{
 #fim:active{background-color: royalblue; transition: none;}
 #recomecar:hover{background-color: forestgreen;}
 #recomecar:active{background-color: royalblue; transition: none;}
+
+.sombra{
+	top: 0;
+	left: 0;
+	margin: 30px 40px;
+	cursor: pointer;
+	position: fixed;
+	width: 60px;
+	height: 60px;
+	border-radius: 50%;
+	box-shadow: 2px 2px 2px grey;
+}
+
+.btnRedondo{
+	cursor: pointer;
+	position: fixed;
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	transition: all .3s ease;
+}
+
+#botaoVoltar{
+	top: 0;
+	left: 0;
+	margin: 30px 40px;
+	width: 60px;
+	height: 60px;
+	background: crimson;
+	-webkit-mask: url(../imgs/arrow-alt-circle-left-solid.svg);
+	mask: url(../imgs/arrow-alt-circle-left-solid.svg);
+	z-index: 0;
+}
+
+/* popup do botão voltar */
+.sombra #popupVoltar {
+	display: none;
+	width: 160px;
+	background-color: #555;
+	color: #fff;
+	text-align: center;
+	border-radius: 6px;
+	padding: 8px 0;
+	position: absolute;
+	z-index: 1;
+	left: 50%;
+	margin-left: 40px;
+	top: 20%;
+}
+
+/* setinha do popup */
+.sombra #popupVoltar::after {
+	content: "";
+	position: absolute;
+	right: 100%;
+	border-width: 5px;
+	border-style: solid;
+	border-color: #555 transparent transparent transparent;
+	transform: translateY(50%) rotate(90deg);
+}
+
+#infobutton{
+	right: 0;
+	bottom: 0;
+	margin: 30px 50px;
+	background: #b3b3b3;
+	-webkit-mask: url(../imgs/info-circle-solid.svg);
+	mask: url(../imgs/info-circle-solid.svg);
+	z-index: 1;
+}
+
+#botaoVoltar:hover{background: firebrick;}
+#botaoVoltar:active{background-color: crimson; transition: none;}
+#infobutton:hover{background: royalblue;}
+#infobutton:active{background-color: #b3b3b3; transition: none;}
