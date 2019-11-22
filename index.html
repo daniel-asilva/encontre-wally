@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
 	<head>
 		<meta charset="utf-8">
 
@@ -7,10 +7,10 @@
 
 		<link href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" rel="stylesheet">
 
-		<link rel="stylesheet" href="./css/styles.css">
+		<link rel="stylesheet" href="./css/main.css">
 		<link rel="stylesheet" href="./css/fireworks.css">
 
-		<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+		<script type="text/javascript" src="./lib/jquery-3.4.1.slim.min.js"></script>
 
 		<!-- importação dos favicons multiplataforma -->
 		<link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
@@ -46,12 +46,30 @@
 		</div>
 
 		<div class="popup">
-			<span class="helper"></span>
-			
+		    <span class="helper"></span>
+		    
 		    <div class="hover_box">
 		        <div class="btnFecharPopup">&times</div>
-		        <p class="content"></p>
-		        <span id="versao">0.3.0-alpha</span>
+
+		        <h3>Como tudo começou...</h3>
+
+				<p class="content">
+					A idéia surgiu na matéria de Programação e Algorítmos do Profº Alcimar.
+					Em aula, nós criamos um jogo em Java onde o usuário fornecia um número 
+					para o programa e recebia uma mensagem informando se o número escolhido 
+					era maior ou menor que o número correto, onde estaria o Wally. 
+					Tudo com uma interface arcáica e apenas MessageBox padrão do Java.<br><br>
+					Então tive a idéia de migrar o jogo pra Web, com uma interface visual mais amigável. 
+					Reaproveitei a lógica e parte do código Java utilizando-os no Javascript, 
+					que não possui uma sintaxe muito diferente do Java. 
+					Criei um layout para servir de base para o jogo e, aos poucos, 
+					fui otimizando a UX.<br><br>
+					Ainda considero o jogo em fase alpha pois não está perfeito. Ele possui 
+					alguns problemas não muito graves e algumas coisas incompletas. 
+					Também não é responsivo e não possui compatibilidade cross-browser.
+				</p>
+
+		        <span id="versao">0.4.0-alpha</span>
 		    </div>
 		</div>
 
@@ -69,6 +87,6 @@
 			<div id="container-casas"></div>
 		</div>
 
-		<script type="text/javascript" src="./js/scripts.js"></script>
+		<script type="text/javascript" src="./js/main.js"></script>
 	</body>
 </html>
